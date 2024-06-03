@@ -36,19 +36,30 @@ switch($op) {
      d. If is_prime is still true, print i as a prime number.
 3. End
 */
-$start = 31;
-$end = 51;
+$start = 1;
+$end = 100;
 
 for($target = $start; $target <= $end; $target ++) {
     $is_prime = true;
+    $divisors = [];
     for($divisor = 2; $divisor < $target; $divisor ++) {
         if($target % $divisor == 0) {
             $is_prime = false;
-            break;
+            // break;
+            array_push($divisors,$divisor);
         }
     }
     if($is_prime) {
-        echo "<p>$target</p>";
+        echo "<p>$target is PRIME</p>";
+    }else {
+        echo "<p>$target is not Prime as it comes in the table of ";
+        foreach($divisors as $i=>$d) {
+            echo "$d";
+            if(count($divisors) != $i+1) {
+                echo ", ";
+            }
+        }
+        echo "</p>";
     }
 }
 
