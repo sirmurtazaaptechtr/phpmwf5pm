@@ -36,7 +36,7 @@ switch($op) {
      d. If is_prime is still true, print i as a prime number.
 3. End
 */
-$start = 1;
+$start = 51;
 $end = 100;
 
 for($target = $start; $target <= $end; $target ++) {
