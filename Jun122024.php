@@ -1,3 +1,14 @@
+<?php
+    $name = $email = $phone = $gender = "";
+
+    if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['sendBtn'])) {
+        $name = $_POST['name'];
+        $email = $_POST['email'];
+        $phone = $_POST['phone'];
+        $gender = $_POST['gender'];
+    }
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +17,7 @@
     <title>Simple Form</title>
 </head>
 <body>
-    <form method="get" action="response.php">
+    <form method="post" action="<?php echo $_SERVER['PHP_SELF'];?>">
         <label for="name">Name</label>
         <input type="text" name="name" id="name">
         <br><br>
@@ -25,5 +36,21 @@
         <br><br>
         <input type="submit" value="Send" name="sendBtn" id="sendBtn">
     </form>
+    <?php if($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['sendBtn'])) {?>
+    <div>
+        <h2>Output</h2>
+        <ul>
+            <li><b>Name : </b><?php echo $name?></li>
+            <li><b>Gender : </b><?php echo $gender?></li>
+            <li><b>Email : </b><?php echo $email?></li>
+            <li><b>Contact : </b><?php echo $phone?></li>
+        </ul>
+    </div>
+    <?php
+    echo "<pre>";
+    print_r($_SERVER);
+    echo "</pre>";
+    }
+    ?>
 </body>
 </html>
